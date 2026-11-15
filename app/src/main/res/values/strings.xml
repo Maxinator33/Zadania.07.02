@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Zadania.07.02</string>
+    <string name="header">Zapisy na wycieczkę</string>
+    <string name="label_name">Imię i nazwisko</string>
+    <string name="label_destination">Kierunek</string>
+    <string name="label_date">Data wyjazdu</string>
+    <string name="label_people">Liczba osób</string>
+    <string name="hint_name">Jan Kowalski</string>
+    <string name="btn_pick_date">Wybierz datę</string>
+    <string name="insurance">Dodaj ubezpieczenie</string>
+    <string name="terms">Akceptuję regulamin</string>
+    <string name="btn_submit">ZAPISZ MNIE</string>
 </resources>
