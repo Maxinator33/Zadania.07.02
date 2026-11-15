@@ -33,4 +33,9 @@
     <string name="no">Popraw</string>
     <string name="sent">Zapisano na wycieczkę</string>
     <string name="undo">Cofnij</string>
+<!--Zadanie 3-->
+    <string name="btn_clear">WYCZYŚĆ FORMULARZ</string>
+    <string name="clear_title">Wyczyścić formularz?</string>
+    <string name="clear_message">Wszystkie wpisane dane zostaną usunięte.</string>
+    <string name="cleared">Formularz wyczyszczony</string>
 </resources>

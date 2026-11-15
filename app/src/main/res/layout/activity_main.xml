@@ -106,6 +106,12 @@
             android:layout_marginTop="16dp"
             android:enabled="false"
             android:text="@string/btn_submit" />
+<!--        zadanie 3-->
+        <Button
+            android:id="@+id/btnClear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_clear" />
 
         <TextView
             android:id="@+id/tvSummary"

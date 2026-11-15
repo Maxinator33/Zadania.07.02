@@ -35,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
     private MaterialSwitch swInsurance;
     private TextView tvSummary;
 
+    private Button btnClear;
+
     private String tripDate = "";   // pusty = nie wybrano
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
         cbTerms = findViewById(R.id.cbTerms);
         swInsurance = findViewById(R.id.swInsurance);
         tvSummary = findViewById(R.id.tvSummary);
+        btnClear = findViewById(R.id.btnClear);
 
         setUpDestinationSpinner();
         setUpListeners();
@@ -80,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
                 askForConfirmation();
             }
         });
+        btnClear.setOnClickListener(v -> askToClear());
         // 3 metody w interfejsie = klasa anonimowa
         sbPeople.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -152,12 +156,24 @@ public class MainActivity extends AppCompatActivity {
                 .setNegativeButton(R.string.no, null)
                 .show();
     }
-
     private void submitForm() {
         tvSummary.setText(buildSummary());
 
         Snackbar.make(findViewById(R.id.main), R.string.sent, Snackbar.LENGTH_LONG)
                 .setAction(R.string.undo, v -> tvSummary.setText(""))
                 .show();
+    }
+    private void askToClear() {
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.clear_title)
+                .setMessage(R.string.clear_message)
+                .setPositiveButton(R.string.yes, (dialog, which) -> clearForm())
+                .setNegativeButton(R.string.no, null)
+                .show();
+    }
+
+    private void clearForm() {
+        etName.setText("");
+        etName.setError(null);
     }
 }
