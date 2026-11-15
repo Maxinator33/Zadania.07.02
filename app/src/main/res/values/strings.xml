@@ -10,4 +10,12 @@
     <string name="insurance">Dodaj ubezpieczenie</string>
     <string name="terms">Akceptuję regulamin</string>
     <string name="btn_submit">ZAPISZ MNIE</string>
+
+    <string-array name="destinations">
+        <item>-- wybierz kierunek --</item>
+        <item>Zakopane</item>
+        <item>Gdańsk</item>
+        <item>Kraków</item>
+        <item>Wrocław</item>
+    </string-array>
 </resources>
