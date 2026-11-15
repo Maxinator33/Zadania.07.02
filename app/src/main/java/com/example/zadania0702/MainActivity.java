@@ -6,6 +6,7 @@ import android.widget.ArrayAdapter;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -72,7 +73,11 @@ public class MainActivity extends AppCompatActivity {
                 btnSubmit.setEnabled(isChecked));
 
         btnDate.setOnClickListener(v -> showDatePicker());
-        btnSubmit.setOnClickListener(v -> submitForm());
+        btnSubmit.setOnClickListener(v -> {
+            if (validateForm()) {
+                submitForm();
+            }
+        });
         // 3 metody w interfejsie = klasa anonimowa
         sbPeople.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -120,5 +125,25 @@ public class MainActivity extends AppCompatActivity {
                 tripDate,
                 sbPeople.getProgress() + 1,
                 insurance);
+    }
+    private boolean validateForm() {
+        String name = etName.getText().toString().trim();
+        if (name.isEmpty()) {
+            etName.setError(getString(R.string.error_name));
+            etName.requestFocus();
+            return false;
+        }
+
+        if (spDestination.getSelectedItemPosition() == 0) {
+            Toast.makeText(this, R.string.error_destination, Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if (tripDate.isEmpty()) {
+            Toast.makeText(this, R.string.error_date, Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        return true;
     }
 }
