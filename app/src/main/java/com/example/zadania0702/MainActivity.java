@@ -174,6 +174,13 @@ public class MainActivity extends AppCompatActivity {
 
     private void clearForm() {
         etName.setText("");
-        etName.setError(null);
+        etName.setError(null);              // usuwa komunikat błędu z pola
+        spDestination.setSelection(0);      // pozycja 0 = "-- wybierz kierunek --"
+        tripDate = "";
+        btnDate.setText(R.string.btn_pick_date);
+        sbPeople.setProgress(0);
+        swInsurance.setChecked(false);
+        cbTerms.setChecked(false);    // listener sam zablokuje przycisk wysyłania
+        tvSummary.setText("");
     }
 }
