@@ -26,4 +26,11 @@
     <string name="error_name">Podaj imię i nazwisko</string>
     <string name="error_destination">Wybierz kierunek z listy</string>
     <string name="error_date">Wybierz datę wyjazdu</string>
+
+    <string name="confirm_title">Zapisać na wycieczkę?</string>
+    <string name="confirm_message">Sprawdź, czy kierunek i data są poprawne.</string>
+    <string name="yes">Tak, zapisz</string>
+    <string name="no">Popraw</string>
+    <string name="sent">Zapisano na wycieczkę</string>
+    <string name="undo">Cofnij</string>
 </resources>

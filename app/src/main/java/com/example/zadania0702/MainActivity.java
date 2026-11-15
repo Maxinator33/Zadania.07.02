@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.appcompat.app.AlertDialog;
 
 import android.app.DatePickerDialog;
 import android.widget.Button;
@@ -21,6 +22,7 @@ import android.widget.EditText;
 import com.google.android.material.materialswitch.MaterialSwitch;
 import java.util.Calendar;
 import java.util.Locale;
+import com.google.android.material.snackbar.Snackbar;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -75,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
         btnDate.setOnClickListener(v -> showDatePicker());
         btnSubmit.setOnClickListener(v -> {
             if (validateForm()) {
-                submitForm();
+                askForConfirmation();
             }
         });
         // 3 metody w interfejsie = klasa anonimowa
@@ -110,10 +112,6 @@ public class MainActivity extends AppCompatActivity {
         dialog.show();
     }
 
-    private void submitForm() {
-        tvSummary.setText(buildSummary());
-    }
-
     private String buildSummary() {
         String insurance = swInsurance.isChecked()
                 ? getString(R.string.yes_short)
@@ -145,5 +143,21 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return true;
+    }
+    private void askForConfirmation() {
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.confirm_title)
+                .setMessage(R.string.confirm_message)
+                .setPositiveButton(R.string.yes, (dialog, which) -> submitForm())
+                .setNegativeButton(R.string.no, null)
+                .show();
+    }
+
+    private void submitForm() {
+        tvSummary.setText(buildSummary());
+
+        Snackbar.make(findViewById(R.id.main), R.string.sent, Snackbar.LENGTH_LONG)
+                .setAction(R.string.undo, v -> tvSummary.setText(""))
+                .show();
     }
 }
