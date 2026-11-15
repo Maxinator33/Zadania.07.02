@@ -18,4 +18,8 @@
         <item>Kraków</item>
         <item>Wrocław</item>
     </string-array>
+
+    <string name="summary_format">%1$s\nKierunek: %2$s\nWyjazd: %3$s\nOsób: %4$d\nUbezpieczenie: %5$s</string>
+    <string name="yes_short">tak</string>
+    <string name="no_short">nie</string>
 </resources>
