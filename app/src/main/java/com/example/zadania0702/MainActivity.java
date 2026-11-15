@@ -64,7 +64,39 @@ public class MainActivity extends AppCompatActivity {
         setUpListeners();
         tvPeopleValue.setText(String.valueOf(sbPeople.getProgress() + 1));
     }
+    // zdjęcie stanu formularza - wartości domyślne = formularz pusty
+    private static class FormState {
+        String name = "";
+        String date = "";
+        int destination = 0;
+        int people = 0;
+        boolean insurance = false;
+        boolean terms = false;
+        String summary = "";
+    }
 
+    private FormState captureState() {
+        FormState s = new FormState();
+        s.name = etName.getText().toString();
+        s.date = tripDate;
+        s.destination = spDestination.getSelectedItemPosition();
+        s.people = sbPeople.getProgress();
+        s.insurance = swInsurance.isChecked();
+        s.terms = cbTerms.isChecked();
+        s.summary = tvSummary.getText().toString();
+        return s;
+    }
+
+    private void restoreState(FormState s) {
+        etName.setText(s.name);
+        tripDate = s.date;
+        btnDate.setText(s.date.isEmpty() ? getString(R.string.btn_pick_date) : s.date);
+        spDestination.setSelection(s.destination);
+        sbPeople.setProgress(s.people);
+        swInsurance.setChecked(s.insurance);
+        cbTerms.setChecked(s.terms);
+        tvSummary.setText(s.summary);
+    }
     private void setUpDestinationSpinner() {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
                 this, R.array.destinations, android.R.layout.simple_spinner_item);
@@ -167,7 +199,13 @@ public class MainActivity extends AppCompatActivity {
         new AlertDialog.Builder(this)
                 .setTitle(R.string.clear_title)
                 .setMessage(R.string.clear_message)
-                .setPositiveButton(R.string.yes, (dialog, which) -> clearForm())
+                .setPositiveButton(R.string.yes, (dialog, which) -> {
+                    FormState backup = captureState();     // zapamiętaj PRZED czyszczeniem
+                    clearForm();
+                    Snackbar.make(findViewById(R.id.main), R.string.cleared, Snackbar.LENGTH_LONG)
+                            .setAction(R.string.undo, v -> restoreState(backup))
+                            .show();
+                })
                 .setNegativeButton(R.string.no, null)
                 .show();
     }
